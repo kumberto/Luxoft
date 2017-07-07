@@ -1,4 +1,7 @@
+#include "../stdafx.h"
 #include "Point.h"
+
+
 
 Point::Point(int x, int y)
 : x_(x)
@@ -6,6 +9,9 @@ Point::Point(int x, int y)
 {
 }
 
+Point::~Point()
+{
+}
 int Point::getX() const
 {
 	return x_;

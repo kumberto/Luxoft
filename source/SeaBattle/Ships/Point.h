@@ -1,8 +1,9 @@
-class Point {
+#pragma once
+class Point
+{
 	public:
 		Point(int x, int y);
-		Point(const Point& point) = delete;
-		Point& operator=(const Point& point) = delete;
+		~Point();
 		int getX() const;
 		void setX(int x);
 		int getY() const;
@@ -10,4 +11,5 @@ class Point {
 	private:
 		int x_;
 		int y_;
-}
+};
+

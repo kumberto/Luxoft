@@ -1,15 +1,21 @@
 #include <iostream>
-#include "players.h"
+#include "../stdafx.h"
+#include "Players.h"
+
 
 Players::Players(std::string name)
-: name_(name)
-, hit_(0)
-, mishit_(0)
-, killedShips_(0)
+	: name_(name)
+	, hit_(0)
+	, mishit_(0)
+	, killedShips_(0)
 {
 }
 
-int Players::getName() const
+Players::~Players()
+{
+}
+
+std::string Players::getName() const
 {
 	return name_;
 }
@@ -23,8 +29,10 @@ void Players::statistics() const
 }
 
 // I didn't think logic
-virtual Players::shot(int x, int y) const
-{}
+bool Players::shot(int x, int y) const
+{
+	return true;
+}
 
 int Players::getHit() const
 {
