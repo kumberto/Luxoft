@@ -9,7 +9,7 @@ FourDeckShip::FourDeckShip(int shipDeck)
 
 FourDeckShip::~FourDeckShip() {}
 
-void FourDeckShip::initPoint(std::initializer_list<Point> list)
+void FourDeckShip::initDeckPoint(std::initializer_list<Point> list)
 {
 	setPointDeck(list);
 }

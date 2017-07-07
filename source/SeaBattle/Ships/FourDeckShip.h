@@ -6,6 +6,6 @@ class FourDeckShip :
 public:
 	FourDeckShip(int shipDeck);
 	~FourDeckShip();
-	void initPoint(std::initializer_list<Point> list);
+	void initDeckPoint(std::initializer_list<Point> list);
 };
 
