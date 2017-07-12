@@ -8,5 +8,6 @@ public:
 	~FieldComputer();
 	void initField();
 	void draw();
+	void initShips();
 };
 

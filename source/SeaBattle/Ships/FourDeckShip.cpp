@@ -9,7 +9,11 @@ FourDeckShip::FourDeckShip(int shipDeck)
 
 FourDeckShip::~FourDeckShip() {}
 
-void FourDeckShip::initDeckPoint(std::initializer_list<Point> list)
+void FourDeckShip::initDeckPoint(const Point& point)
 {
-	setPointDeck(list);
+	int sizeVectorDeck = getSizeDeck();
+	int deck = getShipDecks();
+	if (sizeVectorDeck < deck) {
+		setPointDeck(point);
+	}
 }

@@ -10,9 +10,10 @@ class Ships
 		virtual bool isHit(int x, int y);
 		bool isAlive();
 		virtual int getShipDecks() const;
-		virtual void initDeckPoint(std::initializer_list<Point> list) = 0;
+		virtual void initDeckPoint(const Point& point) = 0;
+		int getSizeDeck() const;
 	protected:
-		void setPointDeck(std::initializer_list<Point> list);
+		void setPointDeck(const Point& point);
 		int shipDecks_;
 	private:
 		

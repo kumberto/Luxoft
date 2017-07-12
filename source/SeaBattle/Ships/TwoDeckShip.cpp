@@ -11,3 +11,8 @@ TwoDeckShip::TwoDeckShip(int shipDeck)
 TwoDeckShip::~TwoDeckShip()
 {
 }
+void TwoDeckShip::initDeckPoint(const Point& point)
+{
+	setPointDeck(point);
+}
+

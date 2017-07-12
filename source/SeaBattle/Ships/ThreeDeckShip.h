@@ -6,5 +6,6 @@ class ThreeDeckShip :
 public:
 	ThreeDeckShip(int shipDeck);
 	~ThreeDeckShip();
+	void initDeckPoint(const Point& point);
 };
 

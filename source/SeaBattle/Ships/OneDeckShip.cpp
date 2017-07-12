@@ -11,7 +11,7 @@ OneDeckShip::~OneDeckShip()
 {
 }
 
-void OneDeckShip::initDeckPoint(std::initializer_list<Point> list)
+void OneDeckShip::initDeckPoint(const Point& point)
 {
-	setPointDeck(list);
+	setPointDeck(point);
 }

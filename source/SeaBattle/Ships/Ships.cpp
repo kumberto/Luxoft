@@ -32,7 +32,11 @@ int Ships::getShipDecks() const
 {
 	return shipDecks_;
 }
-void Ships::setPointDeck(std::initializer_list<Point> list)
+int Ships::getSizeDeck() const
 {
-	pointDeck_.insert(pointDeck_.begin(), list.begin(), list.end());
+	return pointDeck_.size();
+}
+void Ships::setPointDeck(const Point & point)
+{
+	pointDeck_.push_back(point);
 }

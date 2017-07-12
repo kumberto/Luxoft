@@ -3,10 +3,12 @@
 class FieldPlayer :
 	public Fields
 {
-public:
-	FieldPlayer(const Players& player, const Players& playerOwn);
-	~FieldPlayer();
-	void initField();
-	void draw();
+	public:
+		FieldPlayer(const Players& player, const Players& playerOwn);
+		~FieldPlayer();
+		void initField();
+		void draw();
+	protected:
+		void initShips();
 };
 

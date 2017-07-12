@@ -11,3 +11,8 @@ ThreeDeckShip::ThreeDeckShip(int shipDeck)
 ThreeDeckShip::~ThreeDeckShip()
 {
 }
+void ThreeDeckShip::initDeckPoint(const Point& point)
+{
+	setPointDeck(point);
+}
+

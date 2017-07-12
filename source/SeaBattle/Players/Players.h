@@ -6,7 +6,7 @@ public:
 	Players(std::string name);
 	Players(const Players& player) = delete;
 	Players& operator=(const Players& player) = delete;
-	virtual virtual ~Players() = 0;
+	virtual ~Players() = 0;
 	std::string getName() const;
 	virtual void move() = 0;
 	void statistics() const;

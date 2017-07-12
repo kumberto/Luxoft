@@ -14,3 +14,6 @@ FieldComputer::~FieldComputer()
 void FieldComputer::initField()
 {
 }
+void FieldComputer::initShips() {
+
+}
