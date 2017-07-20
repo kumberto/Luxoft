@@ -24,45 +24,48 @@ bool Fields::isEmpty(int deck, int x, int y, char rotation)
 {
 	int row = y;
 	int col = x;
-	std::cout << "x = " << x << " y = " << y;
+	int startY = y;
+	int startX = x;
 	if (rotation == 'h') {
 		row += 2;
-		if (x == 0) {
-			col += (deck + 1);
-		}
+		col += 1;
 		if ((x == 0 && y == 9)) {
 			row -= 1;
-			y = 8;
+			startY = 8;
 		}
-		if (x == 9) {
-			col += 1;
-			x -= deck;
-		}
-		if (x == 9 && y == 9) {
-			y -= 1;
+		else if (x == 9 && y == 9) {
+			startY -= 1;
 			row -= 1;
 		}
-		std::cout << "  H deck = " << deck << "  ";
-		for (int i = y - 1; i < row; i++) {
-			for (int j = x - 1; j < col; j++) {
-				std::cout << '(' << i << ", " << j << ')';
-				if (field_[j][i] == "x") {
-					return false;
-				}
-			}
+		if (x + deck >= 9) {
+			startX = 9 - deck;
+			col = 10;
 		}
-		std::cout << std::endl;
+		if (x == 0) {
+			col += (deck - 1);
+		}
+		if (x > 0 && x + deck < 9) {
+			startX -= 1;
+			col += deck;
+		}
+		if (y > 0) {
+			startY -= 1;
+		}
+		if (y == 9) {
+			row = 10;
+		}
 	}
 	else if (rotation == 'v') {
 		col += 2;
 		row += 1;
-		if (x != 0 && x != 9 && y != 0 && (y + deck) != 9) {
-			x -= 1;
-			y -= 1;
+		if (x > 0 && y > 0 && (y + deck) < 9) {
+			startX -= 1;
+			startY -= 1;
 			row += deck;
 		}
 		else if (x == 0 && y == 0) {
 			row += deck;
+			col -= 1;
 		}
 		else if (x == 9 && y == 0) {
 			col -= 1;
@@ -85,38 +88,39 @@ bool Fields::isEmpty(int deck, int x, int y, char rotation)
 			y -= deck;
 			x -= 1;
 		}
-		else if (x == 0 && ((y + deck) != 9)) {
-			y -= 1;
-			row += deck;
+		if (y + deck >= 9 && x > 0) {
+			startY = 9 - deck;
+			row = 10;
+			startX -= 1;
 		}
-		else if (x == 9 && ((y + deck) != 9)) {
-			x -= 1;
-			col -= 1;
-			row += deck;
-			y -= 1;
+		if (x == 9) {
+			col = 10;
 		}
-		std::cout << "  V deck = " << deck << "  ";
-		for (int i = y; i < row; i++) {
-			for (int j = x; j < col; j++) {
-				std::cout << '(' << i << ", " << j << ')';
-				if (field_[j][i] == "x") {
-					return false;
-				}
+	}
+	for (int i = startY; i < row; i++) {
+		for (int j = startX; j < col; j++) {
+			if (field_[j][i] == "x") {
+				return false;
 			}
 		}
-		std::cout << std::endl;
 	}
 	return true;
 }
 
 void Fields::buildShip(Ships* ship, int deck, int x, int y, char rotation) {
 	if (rotation == 'h') {
+		if (x + deck > 9) {
+			x = 10 - deck;
+		}
 		for (int i = 0; i < deck; i++) {
 			field_[x + i][y] = "x";
 			ship->initDeckPoint(Point((x + i), y));
 		}
 	}
 	else {
+		if (y + deck > 9) {
+			y = 10 - deck;
+		}
 		for (int i = 0; i < deck; i++) {
 			field_[x][y + i] = "x";
 			ship->initDeckPoint(Point(x, (y + i)));

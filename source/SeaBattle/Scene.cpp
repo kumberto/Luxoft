@@ -38,10 +38,10 @@ void Scene::draw()
 			std::cout << "\n " << j << "|";
 		for (int i = 0; i < 24; i++) {
 			if (i < 10) {
-				std::cout << fieldPlayer_->getValueFields(j, i);
+				std::cout << fieldPlayer_->getValueFields(i, j);
 			}
 			else if (i > 13) {
-				std::cout << fieldComputer_->getValueFields(j, i-14);
+				std::cout << fieldComputer_->getValueFields(i - 14, j);
 			}
 			else if (i == 10) {
 				std::cout << "|";
