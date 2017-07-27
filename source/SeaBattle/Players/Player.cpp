@@ -8,11 +8,18 @@ Player::Player(std::string name)
 }
 Player::~Player() {}
 
+void Player::initField(FieldComputer *field) {
+	field_ = field;
+}
+
 void Player::move()
 {
 }
 
 bool Player::shot(int x, int y)
 {
-	return true;
+	if (field_->isHit(x, y)) {
+		return true;
+	}
+	return false;
 }

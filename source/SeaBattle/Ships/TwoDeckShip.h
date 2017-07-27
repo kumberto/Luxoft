@@ -7,5 +7,6 @@ public:
 	TwoDeckShip(int shipDeck);
 	~TwoDeckShip();
 	void initDeckPoint(const Point& point);
+	bool isPoint(int x, int y);
 };
 

@@ -15,3 +15,8 @@ void OneDeckShip::initDeckPoint(const Point& point)
 {
 	setPointDeck(point);
 }
+
+bool OneDeckShip::isPoint(int x, int y)
+{
+	return false;
+}

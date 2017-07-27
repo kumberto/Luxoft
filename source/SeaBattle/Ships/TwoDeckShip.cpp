@@ -16,3 +16,8 @@ void TwoDeckShip::initDeckPoint(const Point& point)
 	setPointDeck(point);
 }
 
+bool TwoDeckShip::isPoint(int x, int y)
+{
+	return false;
+}
+

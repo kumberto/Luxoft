@@ -36,6 +36,10 @@ int Ships::getSizeDeck() const
 {
 	return pointDeck_.size();
 }
+void Ships::setHit()
+{
+	hit_ += 1;
+}
 void Ships::setPointDeck(const Point & point)
 {
 	pointDeck_.push_back(point);

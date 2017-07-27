@@ -10,9 +10,16 @@ Fields::Fields(const Players& player, const Players& playerOwn)
 {
 }
 
-bool Fields::repeatHit()
+bool Fields::isHit(int x, int y)
 {
-	return true;
+	if (field_[x][y] == "x") {
+		field_[x][y] = "#";
+		return true;
+	}
+	else if (field_[x][y] == " ") {
+		field_[x][y] = "+";
+	}
+	return false;
 }
 
 std::string Fields::getValueFields(int x, int y)
@@ -134,4 +141,18 @@ void Fields::setShips(Ships * ship)
 	ships_.push_back(ship);
 }
 
+bool Fields::isAliveShip(int x, int y) {
+	return true;
+}
+
+Ships& Fields::findShip(int x, int y) {
+	Ships *ship = nullptr;
+	for (auto ship : ships_) {
+
+		for (int i = 0; i < ship->getShipDecks(); i++) {
+			ship->isAlive();
+		}
+	}
+	return *ship;
+}
 

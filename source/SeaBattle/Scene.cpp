@@ -9,7 +9,8 @@ Scene::Scene()
 	computer_ = new ComputerPlayer("computer");
 	fieldPlayer_ = new FieldPlayer(*computer_, *player_);
 	fieldComputer_ = new FieldComputer(*player_, *computer_);
-
+	player_->initField(fieldComputer_);
+	computer_->initField(fieldPlayer_);
 }
 
 
