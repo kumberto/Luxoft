@@ -4,12 +4,14 @@
 class Player : public Players
 {
 public:
-	Player(std::string name);
+	Player(std::string name, const FieldComputer& field);
 	~Player();
-	void initField(FieldComputer *field);
 	void move();
-	bool shot(int x, int y);
+	bool shot();
+	bool winner();
 private:
-	FieldComputer *field_;
+	const FieldComputer& field_;
+	int x_;
+	int y_;
 };
 

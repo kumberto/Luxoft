@@ -10,9 +10,10 @@ public:
 	std::string getName() const;
 	virtual void move() = 0;
 	void statistics() const;
-	virtual bool shot(int x, int y) const;
-protected:
+	virtual bool shot() = 0;
+	virtual bool winner() = 0;
 	int getHit() const;
+protected:
 	void setHit();
 	int getMishit() const;
 	void setMishit();

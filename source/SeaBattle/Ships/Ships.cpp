@@ -1,6 +1,9 @@
 #include "../stdafx.h"
 #include "Ships.h"
 
+
+
+
 Ships::Ships(int shipDecks)
 	: shipDecks_(shipDecks)
 {

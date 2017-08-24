@@ -9,6 +9,7 @@ class Scene
 		Scene();
 		~Scene();
 		void draw();
+		void play();
 	private:
 		Player*			player_;
 		ComputerPlayer* computer_;

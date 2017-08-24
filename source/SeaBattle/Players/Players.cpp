@@ -22,16 +22,10 @@ std::string Players::getName() const
 
 void Players::statistics() const
 {
-	std::cout << name_ << "/n";
-	std::cout << "Hits: " << hit_ << "/n";
-	std::cout << "Mishit: " << mishit_ << "/n";
+	std::cout << name_ << "\n";
+	std::cout << "Hits: " << hit_ << "\n";
+	std::cout << "Mishit: " << mishit_ << "\n";
 	std::cout << "Killed ships: " << killedShips_ << std::endl;
-}
-
-// I didn't think logic
-bool Players::shot(int x, int y) const
-{
-	return true;
 }
 
 int Players::getHit() const

@@ -1,4 +1,5 @@
-#include <time.h>
+#include <ctime>
+#include <cstdlib>
 #include "../stdafx.h"
 #include "FieldPlayer.h"
 #include "../Ships/OneDeckShip.h"
@@ -7,8 +8,8 @@
 #include "../Ships/TwoDeckShip.h"
 
 
-FieldPlayer::FieldPlayer(const Players& player, const Players& playerOwn)
-	: Fields(player, playerOwn)
+FieldPlayer::FieldPlayer()
+	: Fields()
 {
 	initField();
 }
@@ -23,7 +24,7 @@ void FieldPlayer::initField()
 }
 
 void FieldPlayer::initShips() {
-	srand(unsigned(time(0)));
+	srand(unsigned int(time(nullptr)));
 	int rotationInt = rand() % 2;
 	int x = rand() % 10;
 	int y = rand() % 10;
@@ -38,6 +39,7 @@ void FieldPlayer::initShips() {
 	}
 	int countShips = 2;
 	while (countShips) {
+		srand(unsigned int(time(nullptr)));
 		x = rand() % 10;
 		y = rand() % 10;
 		rotationInt = rand() % 2;
@@ -56,6 +58,7 @@ void FieldPlayer::initShips() {
 	}
 	countShips = 3;
 	while (countShips) {
+		srand(unsigned int(time(nullptr)));
 		x = rand() % 10;
 		y = rand() % 10;
 		rotationInt = rand() % 2;
@@ -74,18 +77,12 @@ void FieldPlayer::initShips() {
 	}
 	countShips = 4;
 	while (countShips) {
+		srand(unsigned int(time(nullptr)));
 		x = rand() % 10;
 		y = rand() % 10;
-		rotationInt = rand() % 2;
-		if (rotationInt == 0) {
-			rotation = 'h';
-		}
-		else {
-			rotation = 'v';
-		}
-		if (isEmpty(1, x, y, rotation)) {
+		if (isEmpty(1, x, y, 'h')) {
 			OneDeckShip* one = new OneDeckShip(1);
-			buildShip(one, 1, x, y, rotation);
+			buildShip(one, 1, x, y, 'h');
 			setShips(one);
 			countShips -= 1;
 		}

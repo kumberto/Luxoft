@@ -4,10 +4,9 @@ class FieldPlayer :
 	public Fields
 {
 	public:
-		FieldPlayer(const Players& player, const Players& playerOwn);
+		FieldPlayer();
 		~FieldPlayer();
 		void initField();
-		void draw();
 	protected:
 		void initShips();
 };

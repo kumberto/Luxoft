@@ -5,12 +5,11 @@
 
 Scene::Scene()
 {
-	player_ = new Player("player");
-	computer_ = new ComputerPlayer("computer");
-	fieldPlayer_ = new FieldPlayer(*computer_, *player_);
-	fieldComputer_ = new FieldComputer(*player_, *computer_);
-	player_->initField(fieldComputer_);
-	computer_->initField(fieldPlayer_);
+	
+	fieldPlayer_ = new FieldPlayer();
+	fieldComputer_ = new FieldComputer();
+	player_ = new Player("player", *fieldComputer_);
+	computer_ = new ComputerPlayer("computer", *fieldPlayer_);
 }
 
 
@@ -57,10 +56,23 @@ void Scene::draw()
 		std::cout << "|";
 	}
 	std::cout << std::endl;
-	std::cout << "  |----------|   |----------|";
-
-	while (true)
-	{
-
+	std::cout << "  |----------|   |----------|" << std::endl;
+}
+void Scene::play() {
+	for (; !player_->winner() && !computer_->winner();) {
+		do {
+			draw();
+			if (player_->getHit() == 20) {
+				break;
+			}
+			player_->move();
+		} while (player_->shot());
+		do {
+			draw();
+			if (computer_->getHit() == 20) {
+				break;
+			}
+			computer_->move();
+		} while (computer_->shot());
 	}
 }

@@ -3,17 +3,16 @@
 #include "Fields.h"
 #include "../Ships/Point.h"
 
-Fields::Fields(const Players& player, const Players& playerOwn)
-	: player_(player)
-	, playerOwm_(playerOwn)
-	, field_(10,{" ", " ", " ", " ", " ", " ", " ", " ", " ", " "})
+Fields::Fields()
+	: field_(10,{" ", " ", " ", " ", " ", " ", " ", " ", " ", " "})
 {
 }
 
-bool Fields::isHit(int x, int y)
+bool Fields::isHit(int x, int y) const
 {
 	if (field_[x][y] == "x") {
 		field_[x][y] = "#";
+		findShip(x, y);
 		return true;
 	}
 	else if (field_[x][y] == " ") {
@@ -22,7 +21,7 @@ bool Fields::isHit(int x, int y)
 	return false;
 }
 
-std::string Fields::getValueFields(int x, int y)
+std::string Fields::getValueFields(int x, int y) const
 {
 	return field_[x][y];
 }
@@ -44,14 +43,14 @@ bool Fields::isEmpty(int deck, int x, int y, char rotation)
 			startY -= 1;
 			row -= 1;
 		}
-		if (x + deck >= 9) {
+		else if (x + deck >= 9) {
 			startX = 9 - deck;
 			col = 10;
 		}
-		if (x == 0) {
+		else if (x == 0) {
 			col += (deck - 1);
 		}
-		if (x > 0 && x + deck < 9) {
+		else if (x > 0 && x + deck < 9) {
 			startX -= 1;
 			col += deck;
 		}
@@ -76,24 +75,24 @@ bool Fields::isEmpty(int deck, int x, int y, char rotation)
 		}
 		else if (x == 9 && y == 0) {
 			col -= 1;
-			x -= 1;
+			startX -= 1;
 			row += deck;
 		}
 		else if (y == 0) {
-			x -= 1;
+			startX -= 1;
 			row += deck;
 		}
 		else if (x == 0 && y == 9) {
-			y -= deck;
+			startY -= deck;
 		}
 		else if (x == 9 && y == 9) {
-			y -= deck;
-			x -= 1;
+			startY -= deck;
+			startX -= 1;
 			col -= 1;
 		}
 		else if (y == 9) {
-			y -= deck;
-			x -= 1;
+			startY -= deck;
+			startX -= 1;
 		}
 		if (y + deck >= 9 && x > 0) {
 			startY = 9 - deck;
@@ -141,18 +140,11 @@ void Fields::setShips(Ships * ship)
 	ships_.push_back(ship);
 }
 
-bool Fields::isAliveShip(int x, int y) {
-	return true;
-}
-
-Ships& Fields::findShip(int x, int y) {
-	Ships *ship = nullptr;
+Ships& Fields::findShip(int x, int y) const {
 	for (auto ship : ships_) {
-
-		for (int i = 0; i < ship->getShipDecks(); i++) {
-			ship->isAlive();
+		if (ship->isPoint(x, y)) {
+			return *ship;
 		}
 	}
-	return *ship;
 }
 

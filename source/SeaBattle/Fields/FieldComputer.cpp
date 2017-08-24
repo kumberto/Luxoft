@@ -7,9 +7,10 @@
 #include "../Ships/TwoDeckShip.h"
 
 
-FieldComputer::FieldComputer(const Players& player, const Players& playerOwn)
-	: Fields(player, playerOwn)
+FieldComputer::FieldComputer()
+	: Fields()
 {
+	initField();
 }
 
 FieldComputer::~FieldComputer()
@@ -18,25 +19,27 @@ FieldComputer::~FieldComputer()
 
 void FieldComputer::initField()
 {
+	initShips();
 }
 void FieldComputer::initShips() {
-	srand(unsigned(time(0)));
+	srand(unsigned(time(nullptr)));
 	int rotationInt = rand() % 2;
-	int x = rand() % 10;
-	int y = rand() % 10;
+	x_ = rand() % 10;
+	y_ = rand() % 10;
 	char rotation = 'v';
 	if (rotationInt == 0) {
 		rotation = 'h';
 	}
-	if (isEmpty(4, x, y, rotation)) {
+	if (isEmpty(4, x_, y_, rotation)) {
 		FourDeckShip* four = new FourDeckShip(4);
-		buildShip(four, 4, x, y, rotation);
+		buildShip(four, 4, x_, y_, rotation);
 		setShips(four);
 	}
 	int countShips = 2;
 	while (countShips) {
-		x = rand() % 10;
-		y = rand() % 10;
+		srand(unsigned int(time(nullptr)));
+		x_ = rand() % 10;
+		y_ = rand() % 10;
 		rotationInt = rand() % 2;
 		if (rotationInt == 0) {
 			rotation = 'h';
@@ -44,17 +47,18 @@ void FieldComputer::initShips() {
 		else {
 			rotation = 'v';
 		}
-		if (isEmpty(3, x, y, rotation)) {
+		if (isEmpty(3, x_, y_, rotation)) {
 			ThreeDeckShip* three = new ThreeDeckShip(3);
-			buildShip(three, 3, x, y, rotation);
+			buildShip(three, 3, x_, y_, rotation);
 			setShips(three);
 			countShips -= 1;
 		}
 	}
 	countShips = 3;
 	while (countShips) {
-		x = rand() % 10;
-		y = rand() % 10;
+		srand(unsigned int(time(nullptr)));
+		x_ = rand() % 10;
+		y_ = rand() % 10;
 		rotationInt = rand() % 2;
 		if (rotationInt == 0) {
 			rotation = 'h';
@@ -62,17 +66,18 @@ void FieldComputer::initShips() {
 		else {
 			rotation = 'v';
 		}
-		if (isEmpty(2, x, y, rotation)) {
+		if (isEmpty(2, x_, y_, rotation)) {
 			TwoDeckShip* two = new TwoDeckShip(2);
-			buildShip(two, 2, x, y, rotation);
+			buildShip(two, 2, x_, y_, rotation);
 			setShips(two);
 			countShips -= 1;
 		}
 	}
 	countShips = 4;
 	while (countShips) {
-		x = rand() % 10;
-		y = rand() % 10;
+		srand(unsigned int(time(nullptr)));
+		x_ = rand() % 10;
+		y_ = rand() % 10;
 		rotationInt = rand() % 2;
 		if (rotationInt == 0) {
 			rotation = 'h';
@@ -80,9 +85,9 @@ void FieldComputer::initShips() {
 		else {
 			rotation = 'v';
 		}
-		if (isEmpty(1, x, y, rotation)) {
+		if (isEmpty(1, x_, y_, rotation)) {
 			OneDeckShip* one = new OneDeckShip(1);
-			buildShip(one, 1, x, y, rotation);
+			buildShip(one, 1, x_, y_, rotation);
 			setShips(one);
 			countShips -= 1;
 		}

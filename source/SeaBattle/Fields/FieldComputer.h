@@ -4,9 +4,12 @@ class FieldComputer :
 	public Fields
 {
 public:
-	FieldComputer(const Players& player, const Players& playerOwn);
+	FieldComputer();
 	~FieldComputer();
 	void initField();
 	void initShips();
+private:
+	int x_;
+	int y_;
 };
 

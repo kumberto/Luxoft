@@ -23,6 +23,6 @@ bool FourDeckShip::isPoint(int x, int y) {
 			setHit();
 			return true;
 		}
-		return false;
 	}
+	return false;
 }

@@ -5,12 +5,16 @@ class ComputerPlayer :
 	public Players
 {
 public:
-	ComputerPlayer(std::string name);
+	ComputerPlayer(std::string name, const FieldPlayer& field);
 	~ComputerPlayer();
-	void initField(FieldPlayer *field);
+	void initField(const FieldPlayer& field);
 	void move();
-	bool shot(int x, int y);
+	bool shot();
+	bool winner();
 private:
-	FieldPlayer *field_;
+	bool isEmpty();
+	const FieldPlayer& field_;
+	int x_;
+	int y_;
 };
 
