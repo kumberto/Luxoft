@@ -7,8 +7,8 @@ class Ships
 	public:
 		Ships(int shipDecks);
 		virtual ~Ships() = 0;
-		virtual bool isHit(int x, int y);
-		bool isAlive();
+		virtual bool isHit(int x, int y) const;
+		bool isAlive() const;
 		virtual int getShipDecks() const;
 		virtual void initDeckPoint(const Point& point) = 0;
 		int getSizeDeck() const;
@@ -19,8 +19,8 @@ class Ships
 		int shipDecks_;
 		std::vector<Point> pointDeck_;
 	private:
-		bool alive_;
-		int hit_;
+		mutable bool alive_;
+		mutable int hit_;
 		
 };
 

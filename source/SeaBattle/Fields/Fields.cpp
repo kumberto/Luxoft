@@ -12,7 +12,7 @@ bool Fields::isHit(int x, int y) const
 {
 	if (field_[x][y] == "x") {
 		field_[x][y] = "#";
-		findShip(x, y);
+		findShip(x, y)->isHit(x, y);
 		return true;
 	}
 	else if (field_[x][y] == " ") {
@@ -140,10 +140,11 @@ void Fields::setShips(Ships * ship)
 	ships_.push_back(ship);
 }
 
-Ships& Fields::findShip(int x, int y) const {
+const Ships* Fields::findShip(int x, int y) const {
 	for (auto ship : ships_) {
 		if (ship->isPoint(x, y)) {
-			return *ship;
+			std::cout << ship;
+			return ship;
 		}
 	}
 }

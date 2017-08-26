@@ -8,12 +8,12 @@ public:
 	virtual ~Fields() = 0 {};
 	bool isHit(int x, int y) const;
 	std::string getValueFields(int x, int y) const;
+	const Ships* findShip(int x, int y) const;
 protected:
 	void virtual initShips() = 0;
 	bool isEmpty(int deck, int x, int y, char rotation);
 	void buildShip(Ships* ship, int deck, int x, int y, char rotation);
 	void setShips(Ships* ship);
-	Ships& findShip(int x, int y) const;
 
 private:
 	std::vector<Ships*> ships_;

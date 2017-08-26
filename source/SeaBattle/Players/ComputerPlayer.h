@@ -16,5 +16,9 @@ private:
 	const FieldPlayer& field_;
 	int x_;
 	int y_;
+	int hitX_;
+	int hitY_;
+	bool kill_;
+	char rotation_;
 };
 

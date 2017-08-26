@@ -41,7 +41,12 @@ void Scene::draw()
 				std::cout << fieldPlayer_->getValueFields(i, j);
 			}
 			else if (i > 13) {
-				std::cout << fieldComputer_->getValueFields(i - 14, j);
+				if (fieldComputer_->getValueFields(i - 14, j) == "x") {
+					std::cout << " ";
+				}
+				else {
+					std::cout << fieldComputer_->getValueFields(i - 14, j);
+				}
 			}
 			else if (i == 10) {
 				std::cout << "|";
@@ -67,12 +72,16 @@ void Scene::play() {
 			}
 			player_->move();
 		} while (player_->shot());
-		do {
-			draw();
-			if (computer_->getHit() == 20) {
-				break;
-			}
-			computer_->move();
-		} while (computer_->shot());
+		if (player_->getHit() != 20) {
+			do {
+				draw();
+				if (computer_->getHit() == 20) {
+					break;
+				}
+				computer_->move();
+			} while (computer_->shot());
+		}
 	}
+	player_->statistics();
+	computer_->statistics();
 }

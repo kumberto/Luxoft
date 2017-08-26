@@ -30,14 +30,18 @@ bool Player::shot()
 {
 	if (field_.isHit(x_, y_)) {
 		setHit();
+		if (!field_.findShip(x_, y_)->isAlive()) {
+			setKilledShips();
+			std::cout << getKilledShips();
+		}
 		return true;
 	}
+	setMishit();
 	return false;
 }
 
 bool Player::winner() {
 	if (getHit() == 20) {
-		statistics();
 		return true;
 	}
 	return false;
