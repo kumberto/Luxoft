@@ -1,4 +1,5 @@
 #include <time.h>
+#include <thread>
 #include "../stdafx.h"
 #include "FieldComputer.h"
 #include "../Ships/OneDeckShip.h"
@@ -10,7 +11,8 @@
 FieldComputer::FieldComputer()
 	: Fields()
 {
-	initField();
+	std::thread init(std::bind(&FieldComputer::initField, this));
+	init.join();
 }
 
 FieldComputer::~FieldComputer()
@@ -37,7 +39,6 @@ void FieldComputer::initShips() {
 	}
 	int countShips = 2;
 	while (countShips) {
-		srand(unsigned int(time(nullptr)));
 		x_ = rand() % 10;
 		y_ = rand() % 10;
 		rotationInt = rand() % 2;
@@ -56,7 +57,6 @@ void FieldComputer::initShips() {
 	}
 	countShips = 3;
 	while (countShips) {
-		srand(unsigned int(time(nullptr)));
 		x_ = rand() % 10;
 		y_ = rand() % 10;
 		rotationInt = rand() % 2;
@@ -75,7 +75,6 @@ void FieldComputer::initShips() {
 	}
 	countShips = 4;
 	while (countShips) {
-		srand(unsigned int(time(nullptr)));
 		x_ = rand() % 10;
 		y_ = rand() % 10;
 		rotationInt = rand() % 2;

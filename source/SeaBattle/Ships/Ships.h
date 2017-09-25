@@ -7,9 +7,9 @@ class Ships
 	public:
 		Ships(int shipDecks);
 		virtual ~Ships() = 0;
-		virtual bool isHit(int x, int y) const;
+		bool isHit(int x, int y) const;
 		bool isAlive() const;
-		virtual int getShipDecks() const;
+		int getShipDecks() const;
 		virtual void initDeckPoint(const Point& point) = 0;
 		int getSizeDeck() const;
 		virtual bool isPoint(int x, int y) = 0;

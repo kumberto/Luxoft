@@ -6,10 +6,10 @@
 Scene::Scene()
 {
 	
-	fieldPlayer_ = new FieldPlayer();
-	fieldComputer_ = new FieldComputer();
-	player_ = new Player("player", *fieldComputer_);
-	computer_ = new ComputerPlayer("computer", *fieldPlayer_);
+	fieldPlayer_ = std::make_shared<FieldPlayer>();
+	fieldComputer_ = std::make_shared<FieldComputer>();
+	player_ = std::make_shared<Player>("player", fieldComputer_);
+	computer_ = std::make_shared<ComputerPlayer>("computer", fieldPlayer_);
 }
 
 
@@ -28,7 +28,7 @@ void Scene::draw()
 			std::cout << (i - 15);
 		}
 		else {
-			std::cout << "<";
+			std::cout << " ";
 		}
 	}
 	std::cout << std::endl;
@@ -38,14 +38,14 @@ void Scene::draw()
 			std::cout << "\n " << j << "|";
 		for (int i = 0; i < 24; i++) {
 			if (i < 10) {
-				std::cout << fieldPlayer_->getValueFields(i, j);
+				std::cout << fieldPlayer_.get()->getValueFields(i, j);
 			}
 			else if (i > 13) {
-				if (fieldComputer_->getValueFields(i - 14, j) == "x") {
+				if (fieldComputer_.get()->getValueFields(i - 14, j) == "x") {
 					std::cout << " ";
 				}
 				else {
-					std::cout << fieldComputer_->getValueFields(i - 14, j);
+					std::cout << fieldComputer_.get()->getValueFields(i - 14, j);
 				}
 			}
 			else if (i == 10) {

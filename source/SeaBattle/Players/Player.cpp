@@ -3,7 +3,7 @@
 #include "Player.h"
 
 
-Player::Player(std::string name, const FieldComputer& field)
+Player::Player(std::string name, std::weak_ptr<FieldComputer> field)
 	: Players(name)
 	, field_(field)
 {
@@ -28,9 +28,9 @@ void Player::move()
 
 bool Player::shot()
 {
-	if (field_.isHit(x_, y_)) {
+	if (field_.lock().get()->isHit(x_, y_)) {
 		setHit();
-		if (!field_.findShip(x_, y_)->isAlive()) {
+		if (!field_.lock().get()->findShip(x_, y_)->isAlive()) {
 			setKilledShips();
 			std::cout << getKilledShips();
 		}

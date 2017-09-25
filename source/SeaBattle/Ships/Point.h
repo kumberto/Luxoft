@@ -3,7 +3,6 @@ class Point
 {
 	public:
 		Point(int x, int y);
-		~Point();
 		int getX() const;
 		void setX(int x);
 		int getY() const;

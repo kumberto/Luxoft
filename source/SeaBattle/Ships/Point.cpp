@@ -8,10 +8,7 @@ Point::Point(int x, int y)
 , y_(y)
 {
 }
-
-Point::~Point()
-{
-}
+ 
 int Point::getX() const
 {
 	return x_;

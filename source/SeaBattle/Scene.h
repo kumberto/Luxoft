@@ -1,4 +1,5 @@
 #pragma once
+#include <memory>
 #include "Players/Player.h"
 #include "Players/ComputerPlayer.h"
 #include "Fields/FieldComputer.h"
@@ -11,9 +12,9 @@ class Scene
 		void draw();
 		void play();
 	private:
-		Player*			player_;
-		ComputerPlayer* computer_;
-		FieldPlayer*	fieldPlayer_;
-		FieldComputer*	fieldComputer_;
+		std::shared_ptr<Player>	player_;
+		std::shared_ptr<ComputerPlayer> computer_;
+		std::shared_ptr<FieldPlayer> fieldPlayer_;
+		std::shared_ptr<FieldComputer> fieldComputer_;
 };
 
