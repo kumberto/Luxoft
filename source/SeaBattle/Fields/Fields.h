@@ -5,7 +5,7 @@ class Fields
 {
 public:
 	Fields();
-	virtual ~Fields() = 0 {};
+	virtual ~Fields();
 	bool isHit(int x, int y) const;
 	std::string getValueFields(int x, int y) const;
 	const Ships* findShip(int x, int y) const;

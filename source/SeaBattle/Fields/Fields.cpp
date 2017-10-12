@@ -8,6 +8,13 @@ Fields::Fields()
 {
 }
 
+Fields::~Fields() {
+	for (auto ship : ships_) {
+		delete ship;
+		ship = nullptr;
+	}
+}
+
 bool Fields::isHit(int x, int y) const
 {
 	if (field_[x][y] == "x") {
@@ -32,9 +39,7 @@ bool Fields::isEmpty(int deck, int x, int y, char rotation)
 	int col = x;
 	int startY = y;
 	int startX = x;
-	std::cout <<" x: " << x << " y: " << y;
 	if (rotation == 'h') {
-		std::cout << " h-> ";
 		row += 2;
 		col += 1;
 		if ((x == 0 && y == 9)) {
@@ -69,7 +74,6 @@ bool Fields::isEmpty(int deck, int x, int y, char rotation)
 		}
 	}
 	else if (rotation == 'v') {
-		std::cout << " v-> ";
 		col += 2;
 		row += 1;
 		if (x > 0 && (x + 1) < 10 && y > 0 && (y + deck) < 10) {
@@ -118,28 +122,22 @@ bool Fields::isEmpty(int deck, int x, int y, char rotation)
 		}
 		
 	}
-	std::cout << " startX: " << startX << " startY: " << startY;
 	for (int i = startY; i < row; i++) {
 		for (int j = startX; j < col; j++) {
-			std::cout << " x = " << j << " y = " << i;
 			if (field_[j][i] == "x") {
-				std::cout << " false " << std::endl;
 				return false;
 			}
 		}
 	}
-	std::cout << "TRUE" << std::endl;
 	return true;
 }
 
 void Fields::buildShip(Ships* ship, int deck, int x, int y, char rotation) {
-	std::cout << "Building ships x = " << x << " y = " << y;
 	if (rotation == 'h') {
 		if (x + deck > 9) {
 			x = 10 - deck;
 		}
 		for (int i = 0; i < deck; i++) {
-			std::cout << " x = " << (x+i);
 			field_[x + i][y] = "x";
 			ship->initDeckPoint(Point((x + i), y));
 		}
@@ -149,12 +147,10 @@ void Fields::buildShip(Ships* ship, int deck, int x, int y, char rotation) {
 			y = 10 - deck;
 		}
 		for (int i = 0; i < deck; i++) {
-			std::cout << " y = " << (y + i);
 			field_[x][y + i] = "x";
 			ship->initDeckPoint(Point(x, (y + i)));
 		}
 	}
-	std::cout << std::endl;
 }
 
 void Fields::setShips(Ships * ship)
